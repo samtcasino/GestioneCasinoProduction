@@ -1,0 +1,12 @@
+﻿Nome
+Cognome
+Città
+Via
+No. Civico
+No. Telefono
+Email
+Sesso
+Password
+Ripeti password
+
+Registrazione --> email di conferma

@@ -1,0 +1,29 @@
+https://www.valuebound.com/resources/blog/continuous-integration-using-jenkins-and-github-to-automate-deployment
+
+https://gist.github.com/n0mer/fa2e2d0014ac65e8e7b7
+
+INSTALL GUIDE https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
+------------------------------------------------------------
+
+-clone della repo di git in /var/www/html/
+-Installare su Jenkins la plugin di GitHub dal menu di gestione delle plugin
+-Creare nuovo lavoro su Jenkins
+   -Dargli un nome
+   -Scegliere progetto libero/freestyle
+   -Selezionare Github project
+   -Inserire il percorso SSH del progetto
+   -Sotto gestione codice sorgente scegliere Git e mettere l'URL
+   -Sotto compilazione mettere i comandi nella shell che Jenkins eseguirà
+
+-Creare webhook
+   -Andare nella repo Github
+   -Selezionare settings
+   -Selezionare "Webhooks"
+   -Premere "add webhook"
+   -Sotto Payload URL inserire il link del server jenkins più "/github-webhook/"
+   -Sotto Content type inserire "application/json"
+   -Secret può essere lasciato vuoto
+   -Sotto "Which events would you like to trigger this webhook?" selezionare "Just the push event"
+   -Spuntare il visto di Active
+   -Salvare
+

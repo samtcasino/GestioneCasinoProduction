@@ -83,7 +83,7 @@ class SeleniumTestTest {
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage"); 
-        
+	options.addArguments("--no-cache");        
         driver = new ChromeDriver(options);
         driver.get(URL);
         waitMillis(1000);

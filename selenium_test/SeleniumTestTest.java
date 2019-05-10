@@ -11,7 +11,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.GeckoDriverService;
 class SeleniumTestTest {
     String URL = "http://cashyland.tk/";
     WebDriver driver = null;
@@ -83,12 +85,12 @@ class SeleniumTestTest {
     void test() throws IOException {
         //System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
 	final File firefoxPath = new File(System.getProperty("lmportal.deploy.firefox.path", "/usr/bin/firefox"));
-        String Xport = System.getProperty("lmportal.xvfb.id", ":1");
+        //String Xport = System.getProperty("lmportal.xvfb.id", ":0");
 
         driver = new FirefoxDriver( new GeckoDriverService.Builder()
             .usingDriverExecutable(new File("/usr/bin/geckodriver"))
             .usingFirefoxBinary(new FirefoxBinary(firefoxPath))
-            .withEnvironment(ImmutableMap.of("DISPLAY", Xport)).build());        
+            .withEnvironment(ImmutableMap.of("DISPLAY", ":0"/*Xpor*/)).build());        
 /*ChromeDriverService options = new ChromeDriverService.Builder()
         .usingDriverExecutable(new File("/usr/bin/chromedriver"))
         .usingAnyFreePort().withEnvironment(ImmutableMap.of("DISPLAY", ":1")).build();

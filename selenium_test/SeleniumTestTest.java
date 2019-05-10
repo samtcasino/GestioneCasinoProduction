@@ -1,11 +1,15 @@
+import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 class SeleniumTestTest {
@@ -76,14 +80,14 @@ class SeleniumTestTest {
     }
 
     @Test
-    void test() {
-        System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
-        driver = new ChromeDriver();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage"); 
-	options.addArguments("--no-cache");        
+    void test() throws IOException {
+        //System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
+        ChromeDriverService options = new ChromeDriverService.Builder()
+        .usingDriverExecutable(new File("/usr/bin/chromedriver"))
+        .usingAnyFreePort().withEnvironment(ImmutableMap.of("DISPLAY", ":1")).build();
+        
+        options.start();
+        
         driver = new ChromeDriver(options);
         driver.get(URL);
         waitMillis(1000);

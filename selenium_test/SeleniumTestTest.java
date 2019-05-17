@@ -14,6 +14,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.GeckoDriverService;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 class SeleniumTestTest {
     String URL = "http://cashyland.tk/";
@@ -86,19 +88,23 @@ class SeleniumTestTest {
     void test() {
         final File firefoxPath = new File(System.getProperty("lmportal.deploy.firefox.path", "/usr/bin/firefox"));
        
-        String Xport = System.getProperty("lmportal.xvfb.id", ":2");
+        //String Xport = System.getProperty("lmportal.xvfb.id", ":2");
 
-        driver = new FirefoxDriver( new GeckoDriverService.Builder()
+        /*driver = new FirefoxDriver( new GeckoDriverService.Builder()
             .usingDriverExecutable(new File("/usr/bin/geckodriver"))
             .usingFirefoxBinary(new FirefoxBinary(firefoxPath))
-            .withEnvironment(ImmutableMap.of("DISPLAY", Xport)).build());
+            .withEnvironment(ImmutableMap.of("DISPLAY", Xport)).build());*/
+	driver = new FirefoxDriver();
 
         driver.get(URL);
-        waitMillis(1000);
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Accedi")));        
+waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());
-
+	
         accedi();
+System.out.println("Pagina di login");
         registrati();
         accedi();
         forgot();

@@ -96,21 +96,24 @@ class SeleniumTestTest {
             .withEnvironment(ImmutableMap.of("DISPLAY", Xport)).build());*/
 	driver = new FirefoxDriver();
 
-        driver.get(URL);	
-	/*WebDriverWait wait = new WebDriverWait(driver, 60);
-	wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Accedi")));*/
+        driver.get(URL);
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.elementToBeClickable(By.className("container")));
 	waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());
-	
-        accedi();
+	System.out.println("NELLA HOME");
+	waitMillis(1000);
+        /*accedi();
 System.out.println("Pagina di login");
         registrati();
         accedi();
         forgot();
         accedi();
-        home();
+        home();*/
         giochi();
+	System.out.println("NEI GIOCHI");
+	waitMillis(1000);
         home();
         sale();
         home();

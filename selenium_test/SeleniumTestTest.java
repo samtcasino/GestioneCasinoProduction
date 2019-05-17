@@ -24,7 +24,8 @@ class SeleniumTestTest {
     void home(){
         WebElement home = null;
         home = driver.findElement(By.linkText("Home"));
-        home.click();
+        waitMillis(1000);
+	home.click();
         waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());
@@ -32,8 +33,9 @@ class SeleniumTestTest {
 
     void accedi(){
         WebElement accedi = null;
-        accedi = driver.findElement(By.linkText("Accedi"));
-        accedi.click();
+        accedi = driver.findElement(By.id("loginLi"));
+        WebElement loginLink = accedi.findElement(By.id("loginBtn"));
+        loginLink.click();
         waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Login",driver.getTitle());
@@ -104,13 +106,13 @@ class SeleniumTestTest {
         assertEquals("CashyLand - Home",driver.getTitle());
 	System.out.println("NELLA HOME");
 	waitMillis(1000);
-        /*accedi();
-System.out.println("Pagina di login");
+        accedi();
+	System.out.println("Pagina di login");
         registrati();
         accedi();
         forgot();
         accedi();
-        home();*/
+        home();
         giochi();
 	System.out.println("NEI GIOCHI");
 	waitMillis(1000);

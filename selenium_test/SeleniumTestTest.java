@@ -97,8 +97,8 @@ class SeleniumTestTest {
 	driver = new FirefoxDriver();
 
         driver.get(URL);	
-	WebDriverWait wait = new WebDriverWait(driver, 60);
-	wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Accedi")));        
+	/*WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Accedi")));*/
 	waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());

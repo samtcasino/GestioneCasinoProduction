@@ -24,9 +24,8 @@ class SeleniumTestTest {
     void home(){
         WebElement home = null;
         home = driver.findElement(By.linkText("Home"));
-        waitMillis(1000);
+	waitMillis(1000);
 	home.click();
-        waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());
     }
@@ -35,8 +34,8 @@ class SeleniumTestTest {
         WebElement accedi = null;
         accedi = driver.findElement(By.id("loginLi"));
         WebElement loginLink = accedi.findElement(By.id("loginBtn"));
-        loginLink.click();
         waitMillis(1000);
+	loginLink.click();
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Login",driver.getTitle());
     }
@@ -44,8 +43,8 @@ class SeleniumTestTest {
     void registrati(){
         WebElement registrati = null;
         registrati = driver.findElement(By.name("register"));
+	waitMillis(1000);
         registrati.click();
-        waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Registrazione",driver.getTitle());
     }
@@ -53,8 +52,8 @@ class SeleniumTestTest {
     void forgot(){
         WebElement forgot = null;
         forgot = driver.findElement(By.linkText("Hai dimenticato la password?"));
-        forgot.click();
         waitMillis(1000);
+	forgot.click();
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Password Smarrita?",driver.getTitle());
     }
@@ -62,73 +61,43 @@ class SeleniumTestTest {
     void giochi(){
         WebElement giochi = null;
         giochi = driver.findElement(By.linkText("Giochi"));
-        giochi.click();
         waitMillis(1000);
-        System.out.println(driver.getTitle());
+	giochi.click();
+ 	System.out.println(driver.getTitle());
         assertEquals("CashyLand - Giochi",driver.getTitle());
     }
 
     void sale(){
         WebElement sale = null;
         sale = driver.findElement(By.linkText("Sale"));
-        sale.click();
         waitMillis(1000);
+	sale.click();
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Sale",driver.getTitle());
-    }
-
-    void map(){
-        WebElement map = null;
-        map = driver.findElement(By.linkText("Clicca qui per aprire la mappa"));
-        map.click();
-        waitMillis(1000);
-        System.out.println(driver.getTitle());
-        assertEquals("Mandalay Bay Resort and Casino - Google Maps",driver.getTitle());
     }
 
     @Test
     void test() {
         final File firefoxPath = new File(System.getProperty("lmportal.deploy.firefox.path", "/usr/bin/firefox"));
-       
-        //String Xport = System.getProperty("lmportal.xvfb.id", ":2");
 
-        /*driver = new FirefoxDriver( new GeckoDriverService.Builder()
-            .usingDriverExecutable(new File("/usr/bin/geckodriver"))
-            .usingFirefoxBinary(new FirefoxBinary(firefoxPath))
-            .withEnvironment(ImmutableMap.of("DISPLAY", Xport)).build());*/
 	driver = new FirefoxDriver();
 
         driver.get(URL);
 	WebDriverWait wait = new WebDriverWait(driver, 60);
 	wait.until(ExpectedConditions.elementToBeClickable(By.className("container")));
-	waitMillis(1000);
         System.out.println(driver.getTitle());
         assertEquals("CashyLand - Home",driver.getTitle());
-	System.out.println("NELLA HOME");
-	waitMillis(1000);
+
         accedi();
-	System.out.println("Pagina di login");
         registrati();
         accedi();
         forgot();
         accedi();
         home();
         giochi();
-	System.out.println("NEI GIOCHI");
-	waitMillis(1000);
         home();
         sale();
         home();
-
-        WebElement giochi = null;
-        giochi = driver.findElement(By.linkText("Clicca qui per scoprirne di pìù"));
-        giochi.click();
-        waitMillis(1000);
-        System.out.println(driver.getTitle());
-        assertEquals("CashyLand - Giochi",driver.getTitle());
-
-        home();
-        map();
         System.out.println("OK");
 
         driver.quit();

@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         isset($_POST["address"]) &&
         isset($_POST["houseNumber"]) &&
         isset($_POST["phoneNumber"]) &&
-	isset($_POST["birthday"])
+        isset($_POST["birthday"])
     ){
         $name = $_POST["firstname"];
         $surname = $_POST["surname"];
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $houseNumber = $_POST["houseNumber"];
         $phoneNumber = $_POST["phoneNumber"];
         $email = $_POST["email"];
-	$birthday = $_POST["birthday"];
+        $birthday = $_POST["birthday"];
 
         $query = "update user set
             phone_number='$phoneNumber',
@@ -29,10 +29,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             city='$city',
             name='$name',
             surname='$surname',
-	    birthday='$birthday'
+            birthday='$birthday'
             Where email = '$email'
         ";
         $db->executeQuery($query);
+        $message = '<h1>Hey ' .$_POST["firstname"] .'!, your data was modified</h1>';
+        $subjet = "Hi there! Cashyland";
+        $mailSender->mailSend($_POST["email"],$subjet,$message);
         header("Location: ../../../profile.php");
     }
 }
